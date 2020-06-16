@@ -13,7 +13,8 @@ const db = mysql.createConnection({
 db.connect();
 
 app.get('/people', (req, res) => {
-  const sql = 'SELECT * FROM people';
+  const sql =
+    'SELECT people.firstName, technique.name FROM people INNER JOIN technique ON people.id = technique.personId ';
   db.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
